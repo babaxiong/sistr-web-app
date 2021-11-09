@@ -1,4 +1,5 @@
-![Heroku](https://pyheroku-badge.herokuapp.com/?app=sistr-app&style=flat)
+[![Heroku](https://pyheroku-badge.herokuapp.com/?app=sistr-app&style=flat)](https://sistr-app.herokuapp.com)
+
 # SISTR web-app repository
 This repository provides an **easy** deployable web application wrapper for the SISTR tool.
 
