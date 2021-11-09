@@ -1,7 +1,12 @@
+![Heroku](https://pyheroku-badge.herokuapp.com/?app=sistr-app&style=flat)
 # SISTR web-app repository
 This repository provides an **easy** deployable web application wrapper for the SISTR tool.
 
-The demo of this SISTR web-app version 1.1.1 is also available at [https://sistr-app.herokuapp.com/](https://sistr-app.herokuapp.com/)
+##### Demo SISTR web-app
+For demo purposes, a test version of this SISTR web-app running SISTR version 1.1.1 is also available at [https://sistr-app.herokuapp.com/](https://sistr-app.herokuapp.com/)
+
+**NOTE:** The Heroku web application might take up to 20 seconds to load on the first run and all submitted information is temporary stored for 30 min.
+
 
 ## Deployment options
 1. Locally as a:
