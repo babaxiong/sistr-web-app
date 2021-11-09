@@ -1,0 +1,30 @@
+FROM ubuntu:21.04
+ENV DEBIAN_FRONTEND="noninteractive" TZ="America/New_York"
+ENV FLASK_APP="/app/app.py"
+RUN apt update && apt install vim tzdata python3 python3-pip  python3-pycurl -y 
+RUN pip3 install flask maxminddb pandas==1.0.5 sistr_cmd==1.1.1  
+RUN pip3 install uwsgi
+
+#Optional
+#RUN apt -y install openssh-server munge git supervisor
+#RUN apt -y install slurmd slurm-client slurmctld
+#RUN apt -y install mailutils
+
+#COPY aux/SLURM/slurm.conf /etc/slurm/
+#COPY aux/SLURM/supervisord.conf /etc/supervisord.conf
+
+COPY app.py  /app/
+COPY constants.py  /app/
+COPY uwsgi.ini  /app/
+ADD static /app/static
+ADD templates /app/templates
+
+
+# FOR SISTR
+RUN apt -y install ncbi-blast++ mafft libcurl4-openssl-dev libssl-dev mash
+
+# Install SendGrid for notification messages
+#RUN pip3 install sendgrid
+
+#LAUNCH upon startup
+CMD  cd /app && uwsgi --ini uwsgi.ini --http-socket :$PORT

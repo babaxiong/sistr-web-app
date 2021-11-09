@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+       <link rel="stylesheet" href="{{ url_for('static',filename='styles/styles.css') }}">
+       <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <title>SISTR: Salmonella In Silico Typing Resource - History</title>
+
+
+
+    <div class="header">
+    <p>
+        <a href="/">HOME</a> |
+        <a href="/results">RESULTS</a> |
+        <a href="/queue">QUEUE</a> |
+        <a href="/history">HISTORY</a>
+    </p>
+    </div>
+
+</head>
+
+<body>
+   <h1 class="centered">History</h1>
+   <div>
+   {%if history_str%}
+   <table class="queue">
+   {% for line in history_str.splitlines()%}
+    <tr>
+    {% set outer_loop = loop %}
+    {% for field in line.split() %}
+    {% if outer_loop.index == 1 and loop.index >3 %}
+     <th>{{field}}</th>
+    {% elif  outer_loop.index > 1 and loop.index >3 %}
+     <td>{{field}}</td>
+    {% endif %}
+   {%endfor%}
+    </tr>
+   {%endfor%}
+   </table>
+   {%endif%}
+   </div>
+
+   {% with messages = get_flashed_messages() %}
+         {%if messages%}
+            <div class="centered">
+            {%for message in messages%}
+                <p style="color:red">{{message}}</p>
+            {%endfor%}
+            </div>
+         {%endif%}
+    {%endwith%}
+
+
+
+</body>
+</html>

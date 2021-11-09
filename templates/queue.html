@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="15" >
+    <title>Title</title>
+       <link rel="stylesheet" href="{{ url_for('static',filename='styles/styles.css') }}">
+       <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <title>SISTR: Salmonella In Silico Typing Resource - History</title>
+
+    <div class="header">
+    <p>
+        <a href="/">HOME</a> |
+        <a href="/results">RESULTS</a> |
+        <a href="/queue">QUEUE</a> |
+        <a href="/history">HISTORY</a>
+    </p>
+    </div>
+
+</head>
+
+<body>
+   <h1 class="centered">Job Queue Status</h1>
+   <div>
+   {%if output%}
+   <table class="queue">
+   {% for line in output.splitlines()%}
+    <tr>
+    {% set outer_loop = loop %}
+    {% for field in line.split() %}
+    {% if outer_loop.index == 1 %}
+     <th>{{field}}</th>
+    {% elif  outer_loop.index > 1 %}
+     <td>{{field}}</td>
+    {% endif %}
+   {%endfor%}
+    </tr>
+   {%endfor%}
+   </table>
+   {%else%}
+   <p style="text-align:center; color:red;">Queue information not available.</p>
+   {%endif%}
+   </div>
+
+   {% with messages = get_flashed_messages(with_categories=true) %}
+         {%if messages%}
+            <div class="centered">
+            {%for category, message in messages%}
+              {%if category == "error" %}
+                <p style="color:red">{{message}}</p>
+              {%elif category == "info"%}
+                <p style="color:green">{{message}}</p>
+              {%else%}
+                <p style="color:black">{{message}}</p>
+              {%endif%}
+            {%endfor%}
+            </div>
+         {%endif%}
+    {%endwith%}
+
+
+
+</body>
+</html>

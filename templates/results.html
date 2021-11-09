@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+       <link rel="stylesheet" href="{{ url_for('static',filename='styles/styles.css') }}">
+       <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <title>SISTR: Salmonella In Silico Typing Resource - Get Results</title>
+
+    <div class="header">
+    <p>
+        <a href="/">HOME</a> |
+        <a href="/results">RESULTS</a> |
+        <a href="/queue">QUEUE</a> |
+        <a href="/history">HISTORY</a>
+    </p>
+    </div>
+
+    </head>
+
+    <body>
+
+    <h1 class="centered">Get Results</h1>
+    <div class="centered">
+    <form method="post" enctype="application/x-www-form-urlencoded">
+        <input type="text" name="token" size="50" placeholder="Enter your token here to retrieve results or check status">
+        <p> <button name="submit_btn" type="submit" value="Submit">Submit</button>
+            <button name="reset_btn" value="Reset">Reset</button>
+        </p>
+    </form>
+    </div>
+
+     {%with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                {%if category == "error"%}
+         	        <p style="color:red" class="centered">{{message}}</p>
+                {%elif category == "info"%}
+                     <p style="color:green" class="centered">{{message}}</p>
+                {%endif%}
+            {%endfor%}
+        {%endif%}
+     {%endwith%}
+
+     </body>
+</html>

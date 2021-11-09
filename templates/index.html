@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+       <link rel="stylesheet" href="{{ url_for('static',filename='styles/styles.css') }}">
+       <link rel="stylesheet" href="{{ url_for('static', filename='styles/dropzone.css') }}">
+       <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <title>SISTR: Salmonella In Silico Typing Resource - Home</title>
+    <script src="{{ url_for('static', filename='js/dropzone.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+	<script type="application/javascript">
+    $(function() {
+    $.getJSON("https://api.ipify.org?format=jsonp&callback=?",
+      function(json) {
+         console.log(json.ip)
+         $('#cip').val(json.ip);
+      }
+    );
+    });
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LV79GH9YDQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-LV79GH9YDQ');
+    </script>
+
+
+
+    <div class="header">
+    <p>|
+        <a href="/">HOME</a> |
+        <a href="/results">RESULTS</a> |
+        <a href="/queue">QUEUE</a> |
+        <a href="/history">HISTORY</a> |
+    </p>
+    </div>
+
+
+    </head>
+
+    <body>
+    <h1 class="centered">SISTR: Salmonella In Silico Typing Resource</h1>
+    <p>We present the Salmonella In Silico Typing Resource (SISTR) version 1.1.1, a bioinformatics platform for rapidly performing simultaneous in silico analyses for several leading subtyping methods on draft Salmonella genome assemblies. In addition to performing serovar prediction by genoserotyping, this resource integrates sequence-based typing analyses for: Multi-Locus Sequence Typing (MLST), ribosomal MLST (rMLST), and core genome MLST (cgMLST).</p>
+
+    <form action = "{{ url_for('upload') }}" class="dropzone"></form>
+
+    <div class="centered">
+        <input type="checkbox" id="emailcheckbox" onclick="ShowHideFunction()" value="true"/>
+        <label for="emailcheckbox">Send email reminder?</label>
+    </div>
+
+
+    <form method="post" class="centered" id="submit_button">
+        <div id="emailinputform" style="display: none;">
+            <input type="text" name="email" size="50" placeholder="Enter your email here"/>
+        </div>
+        <p><input type="submit" name="submit_genomes" value="Submit"></p>
+        <input type="hidden" id="cip" name="ip", value="">
+    </form>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+     {%if messages%}
+        <div class="centered">
+        {%for category, message in messages%}
+          {%if category == "error" %}
+         	<p style="color:red">{{message}}</p>
+          {%elif category == "info"%}
+            <p style="color:green">{{message}}</p>
+          {%else%}  
+            <p style="color:black">{{message}}</p>
+          {%endif%}
+        {%endfor%}
+        </div>
+     {%endif%}
+{%endwith%}
+    <p><b>Citation: </b><a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0147101" target="_blank"><!-- react-text: 133 -->The <!-- /react-text --><em>Salmonella In Silico</em><!-- react-text: 135 --> Typing Resource (SISTR): an open web-accessible tool for rapidly typing and subtyping draft <!-- /react-text --><em>Salmonella</em><!-- react-text: 137 --> genome assemblies. <!-- /react-text --><!-- react-text: 138 -->Catherine Yoshida, Peter Kruczkiewicz, Chad R. Laing, Erika J. Lingohr, Victor P.J. Gannon, John H.E. Nash, Eduardo N. Taboada. <!-- /react-text --><em>PLoS ONE 11(1): e0147101. doi: 10.1371/journal.pone.0147101</em></a></p>
+    <p><b>Notes:</b><br>
+        1) Do not submit sensitive private data to this public demo website. Rather deploy SISTR web application privately.<br>
+        2) Submitted data is stored temporary due to hosting virtual machine shut down after 30 min of inactivity.<br>
+        3) This site could be deployed locally or on your own infrastructure with source code available at <a href="https://github.com/phac-nml/sistr-web-app">https://github.com/phac-nml/sistr-web-app</a><br>
+    </p>
+    <footer align="center">&copy; Copyright 2021. <a href="https://www.nml-lnm.gc.ca/">Canada's National Microbiology Laboratory</a></footer>
+    </body>
+
+
+</html>
+
+ <!--form method="POST" enctype="multipart/form-data">
+      <p><input type="file" name=file accept=".fasta,.fa">
+        <input type="submit" name="upload" value="Upload"></p>
+      <p><button onclick="upload('{{request.url}}');" name="submit2sistr" value="Submit">Submit</button></p>
+    </form-->
