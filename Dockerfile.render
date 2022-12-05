@@ -38,14 +38,8 @@ RUN pip3 install sendgrid
 # Messages
 # RUN echo "echo 'Log files located at /var/log/supervisor/'"  >> /root/.bashrc
 
+EXPOSE 5010
 
 #LAUNCH upon startup
 CMD /usr/bin/supervisord -c /etc/supervisord.conf  && cd /app && uwsgi --ini uwsgi.ini --http-socket :5010
-#CMD  cd /app && uwsgi --ini uwsgi.ini --http-socket :$PORT
 
-# flask run --host=0.0.0.0 --port=$PORT
-#docker build . -t sistr-server-dev:latest
-#
-#/usr/bin/supervisord -c /etc/supervisord.conf -s  &
-#docker run -it --rm -h sistr-dev -p 5010:5010  -v  `pwd`:/mnt sistr-server-dev:latest  
-#nohup python3 /mnt/app.py  > log.txt 2>&1
