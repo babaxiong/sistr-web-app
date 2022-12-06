@@ -37,7 +37,7 @@ RUN pip3 install sendgrid
 # Messages
 # RUN echo "echo 'Log files located at /var/log/supervisor/'"  >> /root/.bashrc
 
-EXPOSE $PORT
+EXPOSE 5000
 
 #LAUNCH upon startup
 CMD /usr/bin/supervisord -c /etc/supervisord.conf  && cd /app && uwsgi --ini uwsgi.ini --limit-as 512  --http-socket 0.0.0.0:$PORT
