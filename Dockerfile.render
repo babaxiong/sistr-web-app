@@ -28,7 +28,6 @@ RUN chown -R  root:slurm /var/spool && chmod a+w /var/spool
 RUN chown -R root:root /var/log/munge /var/lib/munge
 RUN mkdir -p /var/run/munge && chown -R root:root /var/run/munge /etc/munge /run/munge /var/log/munge/
 
-
 # FOR SISTR
 RUN apt -y install ncbi-blast++ mafft libcurl4-openssl-dev libssl-dev mash
 
@@ -38,8 +37,8 @@ RUN pip3 install sendgrid
 # Messages
 # RUN echo "echo 'Log files located at /var/log/supervisor/'"  >> /root/.bashrc
 
-EXPOSE 5010
+EXPOSE $PORT
 
 #LAUNCH upon startup
-CMD /usr/bin/supervisord -c /etc/supervisord.conf  && cd /app && uwsgi --ini uwsgi.ini --http-socket :5010
+CMD /usr/bin/supervisord -c /etc/supervisord.conf  && cd /app && uwsgi --ini uwsgi.ini --limit-as 512  --http-socket 0.0.0.0:$PORT
 
