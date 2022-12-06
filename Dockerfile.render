@@ -35,5 +35,5 @@ RUN apt -y install ncbi-blast++ mafft libcurl4-openssl-dev libssl-dev mash
 RUN pip3 install sendgrid
 
 #LAUNCH upon startup
-CMD /usr/bin/supervisord -c /etc/supervisord.conf  && cd /app && uwsgi --ini uwsgi.ini --limit-as 512  --http-socket 0.0.0.0:$PORT
+CMD /usr/bin/supervisord -c /etc/supervisord.conf  && cd /app && uwsgi --ini uwsgi.ini  --http-socket 0.0.0.0:$PORT
 

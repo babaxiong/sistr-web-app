@@ -1,12 +1,12 @@
-[![Heroku](https://pyheroku-badge.herokuapp.com/?app=sistr-app&style=flat)](https://sistr-app.herokuapp.com)
+[![render.com](https://img.shields.io/badge/render.com-deployed-brightgreen)](https://sistr-app.onrender.com/)
 
 # SISTR web-app repository
 This repository provides an **easy** deployable web application wrapper for the SISTR tool.
 
 ##### Demo SISTR web-app
-For demo purposes, a test version of this SISTR web-app running SISTR version 1.1.1 is also available at [https://sistr-app.herokuapp.com/](https://sistr-app.herokuapp.com/)
+For demo purposes, a test version of this SISTR web-app running SISTR version 1.1.1 is also available at [https://sistr-app.onrender.com/](https://sistr-app.onrender.com/)
 
-**NOTE:** The Heroku web application might take up to 20 seconds to load on the first run and all submitted information is temporary stored for 30 min.
+**NOTE:** The Render.com web application might take up to 20 seconds to load on the first run and all submitted information is temporary stored for 15 min.
 
 
 ## Deployment options
@@ -14,7 +14,7 @@ For demo purposes, a test version of this SISTR web-app running SISTR version 1.
     - Docker container: build image and deploy on local infrastructure
     - Natively on a classical web-server: install all dependencies and deploy on dedicated hosting
 2. Remotely using
-    - Free Heroku Platform as a Service (PaaS): Deploy publicly on free web-hosting for testing, demo or lightweight usage
+    - Free [Render.com](https://render.com/) Platform as a Service (PaaS): Deploy publicly on free web-hosting for testing, demo or lightweight usage (both Dockerfile and script deployment from a private and public repositories are supported)
     - Cloud infrastructure: Deploy publicly or privately in Cloud Virtual Machine
 
 ## Requirements
