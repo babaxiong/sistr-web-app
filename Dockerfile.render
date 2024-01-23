@@ -2,7 +2,7 @@ FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND="noninteractive" TZ="America/New_York"
 ENV FLASK_APP="/app/app.py"
 RUN apt update && apt install vim tzdata python3 python3-pip  python3-pycurl -y 
-RUN pip3 install flask maxminddb pandas==1.0.5 sistr_cmd==1.1.1  
+RUN pip3 install flask maxminddb numpy<=1.23.5 pandas==1.0.5 sistr_cmd==1.1.1  
 RUN pip3 install uwsgi
 RUN apt -y install gcc g++ make  libmunge-dev bzip2 vim tar wget
 
